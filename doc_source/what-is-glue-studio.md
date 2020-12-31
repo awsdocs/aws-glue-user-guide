@@ -1,6 +1,8 @@
 # What is AWS Glue Studio?<a name="what-is-glue-studio"></a>
 
-AWS Glue Studio is a new graphical interface that makes it easy to create, run, and monitor extract, transform, and load \(ETL\) jobs in AWS Glue\. You can visually compose data transformation workflows and seamlessly run them on AWS Glue’s Apache Spark\-based serverless ETL engine\.
+AWS Glue Studio is a new graphical interface that makes it easy to create, run, and monitor extract, transform, and load \(ETL\) jobs in AWS Glue\. You can visually compose data transformation workflows and seamlessly run them on AWS Glue’s Apache Spark\-based serverless ETL engine\.AWS Glue Studio job editing interface
+
+![\[\]](http://docs.aws.amazon.com/glue/latest/ug/images/screenshot-legislator-job-in-editor.png)
 
 AWS Glue Studio is designed not only for tabular data, but also for semi\-structured data, which is difficult to render in spreadsheet\-like data preparation interfaces\. Examples of semi\-structured data include application logs, mobile events, Internet of Things \(IoT\) event streams, and social feeds\. 
 

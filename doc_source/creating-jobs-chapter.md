@@ -6,6 +6,7 @@ On the **Manage jobs** page, you can see all the jobs that you have created eith
 
 **Topics**
 + [Start the job creation process](#create-jobs-start)
++ [Create jobs that use a connector](#create-jobs-connector)
 + [Next steps for creating a job in AWS Glue Studio](#create-jobs-guiedit)
 
 ## Start the job creation process<a name="create-jobs-start"></a>
@@ -25,6 +26,12 @@ You use the visual graph editor to create and customize your jobs\. When you cre
      For more information about creating tables in the Data Catalog, see [Defining Tables in the AWS Glue Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/tables-described.html) in the *AWS Glue Developer Guide*\.
 
 1. Choose **Create** to open the visual job editor\.
+
+## Create jobs that use a connector<a name="create-jobs-connector"></a>
+
+After you have added a connector to AWS Glue Studio and created a connection for that connector, you can create a job that uses the connection for the data source\.
+
+For detailed instructions, see [Authoring jobs with custom connectors](connectors-chapter.md#job-authoring-custom-connectors)\.
 
 ## Next steps for creating a job in AWS Glue Studio<a name="create-jobs-guiedit"></a>
 

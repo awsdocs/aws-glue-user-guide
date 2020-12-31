@@ -96,7 +96,7 @@ A data target node determines where the transformed output is sent\. The locatio
 
    For the **S3 target location**, choose the **Browse S3** button to see the Amazon S3 buckets that you have access to, and choose one as the target destination\.
 
-   For more information about the available options, see [Configuring data target nodesOverview of data target options](edit-nodes-chapter.md#edit-jobs-target-overview)\.
+   For more information about the available options, see [Overview of data target options](data-target-nodes.md#edit-jobs-target-overview)\.
 
 ## Step 5: View the job script<a name="tutorial-create-job-view-script"></a>
 
@@ -146,5 +146,5 @@ For more information about the job run information, see [View information for re
 
 After you start the job run, you might want to try some of the following tasks: 
 + View the job monitoring dashboard – [Accessing the job monitoring dashboard](monitoring-chapter.md#monitoring-accessing-dashboard)\.
-+ Try a different transform on the data – [Overview of mappings and transforms](edit-nodes-chapter.md#transforms_overview)\.
++ Try a different transform on the data – [Overview of mappings and transforms](edit-jobs-transforms.md#transforms_overview)\.
 + View the jobs that exist in your account – [View your jobs](managing-jobs-chapter.md#view-jobs)\.

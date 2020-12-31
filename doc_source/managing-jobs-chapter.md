@@ -1,9 +1,11 @@
 # Managing ETL jobs with AWS Glue Studio<a name="managing-jobs-chapter"></a>
 
-You can use the simple graphical interface in AWS Glue Studio to manage your ETL jobs\.Using the navigation menu, choose **Jobs** to view the **Manage jobs** page\. On this page, you can see all the jobs that you have created either with AWS Glue Studio or the AWS Glue console\. You can view, manage, and run your jobs on this page\. 
+You can use the simple graphical interface in AWS Glue Studio to manage your ETL jobs\.Using the navigation menu, choose **Jobs** to view the **Jobs** page\. On this page, you can see all the jobs that you have created either with AWS Glue Studio or the AWS Glue console\. You can view, manage, and run your jobs on this page\. 
 
 **Topics**
 + [Start a job run](#start-jobs)
++ [Schedule job runs](#schedule-jobs)
++ [Manage job schedules](#manage-schedules)
 + [Stop job runs](#stop-jobs)
 + [View your jobs](#view-jobs)
 + [View information for recent job runs](#view-job-run-details)
@@ -14,13 +16,58 @@ You can use the simple graphical interface in AWS Glue Studio to manage your ETL
 
 ## Start a job run<a name="start-jobs"></a>
 
-In AWS Glue Studio, you run your jobs on demand\. A job can run multiple times, and each time you run the job, AWS Glue collects information about the job activities and performance\. This information is referred to as a *job run* and is identified by a job run ID\.
+In AWS Glue Studio, you can run your jobs on demand\. A job can run multiple times, and each time you run the job, AWS Glue collects information about the job activities and performance\. This information is referred to as a *job run* and is identified by a job run ID\.
 
 You can initiate a job run in  the following ways in AWS Glue Studio:
-+ On the **Manage Jobs** page, choose the job you want to start, and then choose the **Run job** button\.
++ On the **Jobs** page, choose the job you want to start, and then choose the **Run job** button\.
 + If you're viewing a job in the visual graph editor and the job has been saved, you can choose the **Run** button to start a job run\.
 
 For more information about job runs, see [Working with Jobs on the AWS Glue Console](https://docs.aws.amazon.com/glue/latest/dg/console-jobs.html) in the *AWS Glue Developer Guide*\.
+
+## Schedule job runs<a name="schedule-jobs"></a>
+
+In AWS Glue Studio, you can create a schedule to have your jobs run at specific times\. You can specify constraints, such as the number of times that the jobs run, which days of the week they run, and at what time\. These constraints are based on `cron` and have the same limitations as `cron`\. For example, if you choose to run your job on day 31 of each month, keep in mind that some months don't have 31 days\. For more information about `cron`, see [Cron Expressions](glue/latest/dg/monitor-data-warehouse-schedule.html#CronExpressions) in the *AWS Glue Developer Guide*\. 
+
+1. You can create a job schedule in the following ways in AWS Glue Studio:
+   + On the **Jobs** page, choose the job you want to create a schedule for, choose **Actions**, then choose **Schedule job**\.
+   + If you're viewing a job in the visual graph editor and the job has been saved, choose the **Schedule** tab\. Then choose **Create Schedule**\.
+
+1. On the **Schedule job run** page, enter the following information:
+   + **Name**: Enter a name for your job schedule\. 
+   + **Frequency**: Enter the frequency for the job schedule\. You can choose the following: 
+     + **Hourly**: The job will run every hour, starting at a specific minute\. You can specify the **Minute** of the hour that the job should run\. By default, when you choose hourly, the job runs at the beginning of the hour \(minute 0\)\.
+     + **Daily**: The job will run every day, starting at a time\. You can specify the **Minute** of the hour that the job should run and the **Start hour** for the job\. Hours are specified using a 23\-hour clock, where you use the numbers 13 to 23 for the afternoon hours\. The default values for minute and hour are 0, which means that if you select **Daily**, the job by default will run at midnight\.
+     + **Weekly**: The job will run every week on one or more days\. In addition to the same settings described previous for Daily, you can choose the days of the week on which the job will run\. You can choose one or more days\.
+     + **Monthly**: The job will run every month on a specific day\. In addition to the same settings described previous for Daily, you can choose the day of the month on which the job will run\. Specify the day as a numeric value from 1 to 31\. If you select a day that does not exist in a month, for example the 30th day of February, then the job does not run that month\.
+     + **Custom**: Enter a expression for your job schedule using the `cron` syntax\. Cron expressions allow you to create more complicated schedules, such as the last day of the month \(instead of a specific day of the month\) or every third month on the 7th and 21st days of the month\. 
+
+       See [Cron Expressions](https://docs.aws.amazon.com/glue/latest/dg/monitor-data-warehouse-schedule.html#CronExpressions) in the *AWS Glue Developer Guide*
+   + **Description**: You can optionally enter a description for your job schedule\. If you plan to use the same schedule for multiple jobs, having a description makes it easier to determine what the job schedule does\.
+
+1. Choose **Create schedule** to save the job schedule\.
+
+1. After you create the schedule, a success message appears at the top of the console page\. You can choose **Job details** in this banner to view the job details\. This opens the visual job editor page, with the **Schedules** tab selected\.
+
+## Manage job schedules<a name="manage-schedules"></a>
+
+After you have created schedules for a job, you can open the job in the visual editor and choose the **Schedule** tab to manage the schedules\.
+
+On the **Schedules** tab of the visual editor, you can perform the following tasks:
++ Create a new schedule\.
+
+  Choose **Create schedule**, then enter the information for your schedule as described in [Schedule job runs](#schedule-jobs)\.
++ Edit an existing schedule\.
+
+  Choose the schedule you want to edit, then choose **Action** followed by **Edit schedule**\. When you choose to edit an existing schedule, the **Frequency** shows as **Custom**, and the schedule is displayed as a `cron` expression\. You can either modify the `cron` expression, or specify a new schedule using the **Frequency** button\. When you finish with your changes, choose **Update schedule**\.
++ Pause an active schedule\.
+
+  Choose an active schedule, and then choose **Action** followed by **Pause schedule**\. The schedule is instantly deactivated\. Choose the refresh \(reload\) button to see the updated job schedule status\.
++ Resume a paused schedule\.
+
+  Choose a deactivated schedule, and then choose **Action** followed by **Resume schedule**\. The schedule is instantly activated\. Choose the refresh \(reload\) button to see the updated job schedule status\.
++ Delete a schedule\.
+
+  Choose the schedule you want to remove, and then choose **Action** followed by **Resume schedule**\. The schedule is instantly deleted\. Choose the refresh \(reload\) button to see the updated job schedule list\. The schedule will show a status of **Deleting** until it has been completely removed\.
 
 ## Stop job runs<a name="stop-jobs"></a>
 
