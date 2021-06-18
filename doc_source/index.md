@@ -1,7 +1,7 @@
 # AWS Glue Studio User Guide
 
 -----
-*****Copyright &copy; 2020 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -19,13 +19,19 @@ Amazon's trademarks and trade dress may not be used in
 + [Tutorial: Getting started with AWS Glue Studio](tutorial-create-job.md)
 + [Creating ETL jobs with AWS Glue Studio](creating-jobs-chapter.md)
 + [Editing ETL jobs in AWS Glue Studio](edit-nodes-chapter.md)
-   + [Accessing the job graph editor](edit-nodes-access-editor.md)
+   + [Accessing the job diagram editor](edit-nodes-access-editor.md)
+   + [Job editor features](job-editor-features.md)
    + [Editing the data source node](edit-jobs-source.md)
+      + [Using Data Catalog tables for the data source](edit-jobs-source-catalog-tables.md)
+      + [Using a connector for the data source](edit-jobs-source-connectors.md)
+      + [Using files in Amazon S3 for the data source](edit-jobs-source-s3-files.md)
+      + [Using a streaming data source](edit-jobs-source-streaming.md)
    + [Editing the data transform node](edit-jobs-transforms.md)
    + [Configuring data target nodes](data-target-nodes.md)
-   + [Adding nodes to the job graph](edit-job-add-nodes.md)
-   + [Changing the parent nodes for a node in the job graph](edit-job-change-parents.md)
-   + [Deleting nodes from the job graph](edit-job-delete-node.md)
+   + [Editing or uploading a job script](edit-script.md)
+   + [Adding nodes to the job diagram](edit-job-add-nodes.md)
+   + [Changing the parent nodes for a node in the job diagram](edit-job-change-parents.md)
+   + [Deleting nodes from the job diagram](edit-job-delete-node.md)
 + [Using connectors and connections with AWS Glue Studio](connectors-chapter.md)
 + [Tutorial: Using the open-source Elasticsearch Spark Connector](tutorial-elastisearch-connector.md)
    + [Step 1: (Optional) Create an AWS secret for your Elasticsearch cluster information](tutorial-step1.md)
@@ -37,5 +43,5 @@ Amazon's trademarks and trade dress may not be used in
 + [Managing ETL jobs with AWS Glue Studio](managing-jobs-chapter.md)
 + [Monitoring ETL jobs in AWS Glue Studio](monitoring-chapter.md)
 + [Tutorial: Adding an AWS Glue crawler](tutorial-add-crawler.md)
-+ [Document History for AWS Glue Studio User Guide](studio-doc-history.md)
++ [Document history for AWS Glue Studio User Guide](studio-doc-history.md)
 + [AWS glossary](glossary.md)

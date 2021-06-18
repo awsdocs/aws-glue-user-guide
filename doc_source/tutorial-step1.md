@@ -2,10 +2,9 @@
 
 To safely store and use your connection credential, save your credential in AWS Secrets Manager\. The secret you create will be used later in the tutorial by the connection\. The credential key\-value pairs will be fed into the Elasticsearch Spark Connector as normal connection options\.
 
-**Note**  
-Your AWS Glue ETL job and secret must be hosted in the same Region\. Cross\-Region secret retrieval is not supported currently\.
-
 For more information about creating secrets, see [Creating and Managing Secrets with AWS Secrets Manager](https://docs.aws.amazon.com/secretsmanager/latest/userguide/managing-secrets.html) in the *AWS Secrets Manager User Guide*\.
+
+**To create an AWS secret**
 
 1. Sign in to the [AWS Secrets Manager console](https://console.aws.amazon.com/secretsmanager/)\.
 

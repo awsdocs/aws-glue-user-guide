@@ -18,4 +18,6 @@ In this tutorial, we will show how to connect to your Amazon Elasticsearch Servi
 To use this tutorial, you must have the following:
 + Access to AWS Glue Studio
 + Access to an Elasticsearch cluster in the AWS Cloud
-+ \(Optional\) Access to AWS Secrets Manager
++ Configured access to the Amazon VPC that contains your data store, as described in [Configuring a VPC for your ETL job](setting-up.md#getting-started-vpc-config)\.
++ Configured permissions according to [Job\-related permissions](setting-up.md#getting-started-min-privs-job)
++ \(Optional\) Access to AWS Secrets Manager\.

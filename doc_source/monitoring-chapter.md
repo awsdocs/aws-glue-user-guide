@@ -18,9 +18,9 @@ You access the job monitoring dashboard by choosing the **Monitoring** link in t
 
 The job monitoring dashboard provides an overall summary of the job runs, with totals for the jobs with a status of **Running**, **Canceled**, **Success**, or **Failed**\. Additional tiles provide the overall job run success rate, the estimated DPU usage for jobs, a breakdown of the job status counts by job type, worker type, and by day\. 
 
-The graphs in the tiles are interactive\. You can choose any block in a graph to run a filter that displays only those jobs in the **Job runs breakdown** table at the bottom of the page\.
+The graphs in the tiles are interactive\. You can choose any block in a graph to run a filter that displays only those jobs in the **Job runs** table at the bottom of the page\.
 
-You can change the date range for the information displayed on this page by using the date range selector\. When you change the date range, the information tiles adjust to show the values for the specified number of days before the current date\. You can also use a specific date range if you choose **Custom** from the date range selector\. 
+You can change the date range for the information displayed on this page by using the **Date range** selector\. When you change the date range, the information tiles adjust to show the values for the specified number of days before the current date\. You can also use a specific date range if you choose **Custom** from the date range selector\. 
 
 ## Job runs view<a name="monitoring-job-breakdown"></a>
 
@@ -46,23 +46,23 @@ The **Job runs** resource list displays the details for the job runs\. You can s
 | DPU hours |  The estimated number of DPUs used for the job run\. A DPU is a relative measure of processing power\. DPUs are used to determine the cost of running your job\. For more information, see the [AWS Glue pricing](https://aws.amazon.com/glue/pricing/) page\.  | 
 
 You can choose any job run in the list and view additional information\. Choose a job run, and then do one of the following:
-+ Choose the **Actions** menu and the **View logs** option to view the job run logs for that job\. 
-+ Choose the **Actions** menu and the **View job** option to view the job in the visual graph editor\.
++ Choose the **Actions** menu and the **View job** option to view the job in the visual editor\.
 + Choose the **Actions** menu and the **Stop run** option to stop the current run of the job\.
++ Choose the **View CloudWatch logs** button to view the job run logs for that job\. 
 + Choose **View run details** to view the job run details page\.
 
 ## Viewing the job run logs<a name="monitoring-job-run-logs"></a>
 
 You can view the job logs in a variety of ways:
-+ On the **Monitoring** page, in the **Job Runs** table, choose a job\. Then, on the **Actions** menu, choose **View logs** \.
-+ In the visual job editor, on the **Run details** tab for a job, choose the hyperlinks to view the logs:
-  + **Logs** – Links to the logs written to `stdout` for this job run\. When you choose this link, it takes you to Amazon CloudWatch Logs, where you can see all the details about the tables that were created in the AWS Glue Data Catalog and any errors that were encountered\.
-  + **Error Logs** – Links to the logs written to `stderr` for this job run\. When you choose this link, it takes you to CloudWatch Logs, where you can view details about any errors that were encountered during the job run\.
-+ If you run a job on\-demand and the job fails, choose the link in the banner to view the logs for that job run\.
++ On the **Monitoring** page, in the **Job runs** table, choose a job run, and then choose **View CloudWatch logs**\.
++ In the visual job editor, on the **Runs** tab for a job, choose the hyperlinks to view the logs:
+  + **Logs** – Links to the Apache Spark job logs written when continuous logging is enabled for a job run\. When you choose this link, it takes you to the Amazon CloudWatch logs in the `/aws-glue/jobs/logs-v2` log group\. By default, the logs exclude non\-useful Apache Hadoop YARN heartbeat and Apache Spark driver or executor log messages\. For more information about continuous logging, see [Continuous Logging for AWS Glue Jobs](https://docs.aws.amazon.com/glue/latest/dg/monitor-continuous-logging.html) in the *AWS Glue Developer Guide*\.
+  + **Error logs** – Links to the logs written to `stderr` for this job run\. When you choose this link, it takes you to the Amazon CloudWatch logs in the `/aws-glue/jobs/error` log group\. You can use these logs to view details about any errors that were encountered during the job run\.
+  + **Output logs** – Links to the logs written to `stdout` for this job run\. When you choose this link, it takes you to the Amazon CloudWatch logs in the `/aws-glue/jobs/output` log group\. You can use these logs to see all the details about the tables that were created in the AWS Glue Data Catalog and any errors that were encountered\.
 
 ## Viewing the details of a job run<a name="monitoring-job-run-details"></a>
 
-You can choose a job in the **Job runs** view and then choose **View run details** to see detailed information for that run of the job\. 
+You can choose a job in the **Job runs** list on the **Monitoring** page, and then choose **View run details** to see detailed information for that run of the job\. 
 
 The information displayed on the job run detail page includes:
 
@@ -73,8 +73,8 @@ The information displayed on the job run detail page includes:
 | Run Status |  The current state of the job run\. Values can be: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/glue/latest/ug/monitoring-chapter.html)  | 
 | Glue version | The AWS Glue version used by the job run | 
 | Recent attempt | The number of automatic retry attempts for this job run | 
-| Start Time |  The date and time at which this job run was started  | 
-| End Time |  The date and time that this job run completed  | 
+| Start time |  The date and time at which this job run was started  | 
+| End time |  The date and time that this job run completed  | 
 | Start\-up time |  The amount of time spent preparing to run the job  | 
 | Execution time |  The amount of time spent running the job script  | 
 | Trigger name |  The name of the trigger associated with the job  | 
@@ -84,14 +84,14 @@ The information displayed on the job run detail page includes:
 | Allocated capacity |  The number of AWS Glue data processing units \(DPUs\) that were allocated for this job run\. For more information about capacity planning, see [Monitoring for DPU Capacity Planning](https://docs.aws.amazon.com/glue/latest/dg/monitor-debug-capacity.html) in the *AWS Glue Developer Guide*\.  | 
 | Max capacity |  The maximum capacity available to the job run\.  | 
 | Number of workers | The number of workers used for the job run  | 
-| Worker Type |  The type of predefined workers allocated for the job run\. Values can be `Standard`, `G.1X`, or `G.2X`\.  | 
-| Logs | A link to the job log files  | 
-| Error logs | A link to the job error log files  | 
-| Error | The error returned by the job run\. If the job run does not return an error, then this field does not appear\.  | 
+| Worker type |  The type of predefined workers allocated for the job run\. Values can be `Standard`, `G.1X`, or `G.2X`\.  | 
+| Logs | A link to the job logs for continuous logging \(/aws\-glue/jobs/logs\-v2\)  | 
+| Output Logs | A link to the job output log files \(/aws\-glue/jobs/output\) | 
+| Error logs | A link to the job error log files \(/aws\-glue/jobs/error\) | 
 
 ## Viewing Amazon CloudWatch metrics for a job run<a name="monitoring-job-run-metrics"></a>
 
-On the job run details page, below the **Run details** section, you can view the job metrics\. AWS Glue Studio sends job metrics to Amazon CloudWatch for every job run\. 
+On the details page for a job run, below the **Run details** section, you can view the job metrics\. AWS Glue Studio sends job metrics to Amazon CloudWatch for every job run\. 
 
 AWS Glue reports metrics to Amazon CloudWatch every 30 seconds\. The AWS Glue metrics represent delta values from the previously reported values\. Where appropriate, metrics dashboards aggregate \(sum\) the 30\-second values to obtain a value for the entire last minute\. However, the Apache Spark metrics that AWS Glue passes on to Amazon CloudWatch are generally absolute values that represent the current state at the time they are reported\. 
 
@@ -101,5 +101,5 @@ You must configure your account to access Amazon CloudWatch, as described in [Am
 The metrics provide information about your job run, such as:
 + **ETL Data Movement** – The number of bytes read from or written to Amazon S3\.
 + **Memory Profile: Heap used** – The number of memory bytes used by the Java virtual machine \(JVM\) heap\.
-+ **Memory Profile: heap usage** – The fraction of memory \(scale: 0–1\) used by the JVM heap\.
-+ **CPU Load** – The fraction of CPU system load used \(scale: 0–1\)\.
++ **Memory Profile: heap usage** – The fraction of memory \(scale: 0–1\), shown as a percentage, used by the JVM heap\.
++ **CPU Load** – The fraction of CPU system load used \(scale: 0–1\), shown as a percentage\.

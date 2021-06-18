@@ -9,7 +9,7 @@ Complete the tasks in this section when you're using AWS Glue Studio for the fir
 + [IAM permissions needed for the AWS Glue Studio user](#getting-started-min-privs)
 + [Job\-related permissions](#getting-started-min-privs-job)
 + [Set up IAM permissions for AWS Glue Studio](#getting-started-iam-permissions)
-+ [Configuring an Amazon VPC for your ETL job](#getting-started-vpc-config)
++ [Configuring a VPC for your ETL job](#getting-started-vpc-config)
 + [Populate the AWS Glue Data Catalog](#getting-started-populate-catalog)
 
 ## Sign up for AWS<a name="setting-up-aws-sign-up"></a>
@@ -32,7 +32,7 @@ If your account already includes an IAM user with full AWS administrative permis
 
 1. Sign in to the [IAM console](https://console.aws.amazon.com/iam/) as the account owner by choosing **Root user** and entering your AWS account email address\. On the next page, enter your password\.
 **Note**  
-We strongly recommend that you adhere to the best practice of using the **Administrator** IAM user below and securely lock away the root user credentials\. Sign in as the root user only to perform a few [account and service management tasks](https://docs.aws.amazon.com/general/latest/gr/aws_tasks-that-require-root.html)\.
+We strongly recommend that you adhere to the best practice of using the **Administrator** IAM user that follows and securely lock away the root user credentials\. Sign in as the root user only to perform a few [account and service management tasks](https://docs.aws.amazon.com/general/latest/gr/aws_tasks-that-require-root.html)\.
 
 1. In the navigation pane, choose **Users** and then choose **Add user**\.
 
@@ -50,7 +50,7 @@ We strongly recommend that you adhere to the best practice of using the **Admini
 
 1. In the **Create group** dialog box, for **Group name** enter **Administrators**\.
 
-1. Choose **Filter policies**, and then select **AWS managed \-job function** to filter the table contents\.
+1. Choose **Filter policies**, and then select **AWS managed \- job function** to filter the table contents\.
 
 1. In the policy list, select the check box for **AdministratorAccess**\. Then choose **Create group**\.
 **Note**  
@@ -110,9 +110,11 @@ An AWS Glue Studio job must have access to Amazon S3 for any sources, targets, s
 + Data sources require `s3:ListBucket` and `s3:GetObject` permissions\. 
 + Data targets require `s3:ListBucket`, `s3:PutObject`, and `s3:DeleteObject` permissions\.
 
+If you choose Amazon Redshift as your data source, you can provide a role for cluster permissions\. Jobs that run against a Amazon Redshift cluster issue commands that access Amazon S3 for temporary storage using temporary credentials\. If your job runs for more than an hour, these credentials will expire causing the job to fail\. To avoid this problem, you can assign a role to the Amazon Redshift cluster itself that grants the necessary permissions to jobs using temporary credentials\. For more information, see [Moving Data to and from Amazon Redshift](https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-redshift.html) in the *AWS Glue Developer Guide*\.
+
 If the job uses data sources or targets other than Amazon S3, then you must attach the necessary permissions to the IAM role used by the job to access these data sources and targets\. For more information, see [Setting Up Your Environment to Access Data Stores](https://docs.aws.amazon.com/glue/latest/dg/start-connecting.html) in the *AWS Glue Developer Guide*\.
 
-If you are using connectors and connections for your data store, you need additional permissions, as described in [Additional permissions when using connectors](#getting-started-min-privs-connectors)\.
+If you're using connectors and connections for your data store, you need additional permissions, as described in [Additional permissions when using connectors](#getting-started-min-privs-connectors)\.
 
 ### AWS Key Management Service permissions<a name="getting-started-min-privs-kms"></a>
 
@@ -122,16 +124,18 @@ There are additional charges for using AWS KMS CMKs\. For more information, see 
 
 ### Additional permissions when using connectors<a name="getting-started-min-privs-connectors"></a>
 
-If you are using an AWS Glue Custom Connector and connection to access a data store, the role used to run the AWS Glue ETL job needs additional permissions attached:
-+ The AWS managed policy `AmazonEC2ContainerRegistryReadOnly` for accessing connectors purchased from AWS Marketplace
-+ The `glue:GetJob` and `glue:GetJobs` permissions
-+ AWS Secrets Manager permissions for accessing AWS secrets used with connections\. Refer to [IAM policy examples for secrets in AWS Secrets Manager](https://docs.aws.amazon.com/mediaconnect/latest/ug/iam-policy-examples-asm-secrets.html) for example IAM policies\.
+If you're using an AWS Glue Custom Connector and connection to access a data store, the role used to run the AWS Glue ETL job needs additional permissions attached:
++ The AWS managed policy `AmazonEC2ContainerRegistryReadOnly` for accessing connectors purchased from AWS Marketplace\.
++ The `glue:GetJob` and `glue:GetJobs` permissions\.
++ AWS Secrets Manager permissions for accessing secrets that are used with connections\. Refer to [IAM policy examples for secrets in AWS Secrets Manager](https://docs.aws.amazon.com/mediaconnect/latest/ug/iam-policy-examples-asm-secrets.html) for example IAM policies\.
 
-If your AWS Glue ETL job runs within a Amazon VPC, then the VPC must be configured as described in [Configuring an Amazon VPC for your ETL job](#getting-started-vpc-config)\.
+If your AWS Glue ETL job runs within a VPC running Amazon VPC, then the VPC must be configured as described in [Configuring a VPC for your ETL job](#getting-started-vpc-config)\.
 
 ## Set up IAM permissions for AWS Glue Studio<a name="getting-started-iam-permissions"></a>
 
 You can create the roles and assign policies to users and job roles by using the AWS administrator user\. 
+
+**To create an IAM policy and role for use with AWS Glue Studio**
 
 1. Create an IAM policy for the AWS Glue service\.
 
@@ -149,20 +153,24 @@ You can create the roles and assign policies to users and job roles by using the
 
    To create additional users for AWS Glue and AWS Glue Studio, follow the steps in [Creating Your First IAM Delegated User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-delegated-user.html) in the *IAM User Guide*\. 
 
-## Configuring an Amazon VPC for your ETL job<a name="getting-started-vpc-config"></a>
+## Configuring a VPC for your ETL job<a name="getting-started-vpc-config"></a>
 
-Amazon Virtual Private Cloud \(Amazon VPC\) enables you to define a virtual network in your own logically isolated area within the AWS cloud, known as a *virtual private cloud \(VPC\)*\. You can launch your AWS resources, such as instances, into your VPC\. Your VPC closely resembles a traditional network that you might operate in your own data center, with the benefits of using AWS's scalable infrastructure\. You can configure your VPC; you can select its IP address range, create subnets, and configure route tables, network gateways, and security settings\. You can connect instances in your VPC to the internet\. You can connect your VPC to your own corporate data center, making the AWS cloud an extension of your data center\. To protect the resources in each subnet, you can use multiple layers of security, including security groups and network access control lists\. For more information, see the [Amazon VPC User Guide](https://docs.aws.amazon.com/vpc/latest/userguide/)\.
+You can use Amazon Virtual Private Cloud \(Amazon VPC\) to define a virtual network in your own logically isolated area within the AWS Cloud, known as a *virtual private cloud \(VPC\)*\. You can launch your AWS resources, such as instances, into your VPC\. Your VPC closely resembles a traditional network that you might operate in your own data center, with the benefits of using the scalable infrastructure of AWS\. You can configure your VPC; you can select its IP address range, create subnets, and configure route tables, network gateways, and security settings\. You can connect instances in your VPC to the internet\. You can connect your VPC to your own corporate data center, making the AWS Cloud an extension of your data center\. To protect the resources in each subnet, you can use multiple layers of security, including security groups and network access control lists\. For more information, see the [Amazon VPC User Guide](https://docs.aws.amazon.com/vpc/latest/userguide/)\.
 
 You can configure your AWS Glue ETL jobs to run within a VPC when using connectors\. You must configure your VPC for the following, as needed:
 + Public network access for data stores not in AWS\. All data stores that are accessed by the job must be available from the VPC subnet\. 
-+ If your job needs to access both VPC resources and the public internet, the VPC needs to have a Network Address Translation \(NAT\) gateway inside the VPC\. 
++ If your job needs to access both VPC resources and the public internet, the VPC needs to have a network address translation \(NAT\) gateway inside the VPC\. 
 
   For more information, see [Setting Up Your Environment to Access Data Stores](https://docs.aws.amazon.com/glue/latest/dg/start-connecting.html) in the *AWS Glue Developer Guide*\.
 
 ## Populate the AWS Glue Data Catalog<a name="getting-started-populate-catalog"></a>
 
-AWS Glue Studio uses datasets that are defined in the AWS Glue Data Catalog\. These datasets are used as sources and targets for ETL workflows in AWS Glue Studio\.
+AWS Glue Studio uses datasets that are defined in the AWS Glue Data Catalog\. These datasets are used as sources and targets for ETL workflows in AWS Glue Studio\. If you choose the Data Catalog for your data source or target, then the Data Catalog tables related to your data source or data target must exist prior to creating a job\.
 
-When reading from a data source, your ETL job needs to know the schema of the data being read\. The ETL job can get this information from a table in the AWS Glue Data Catalog\. You can use a crawler, the AWS Glue console or CLI, or an AWS CloudFormation template file to add databases and tables to the AWS Glue Data Catalog\. For more information about populating the Data Catalog, see [AWS Glue Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/components-overview.html#data-catalog-intro) in the *AWS Glue Developer Guide*\.
+When reading from or writing to a data source, your ETL job needs to know the schema of the data\. The ETL job can get this information from a table in the AWS Glue Data Catalog\. You can use a crawler, the AWS Glue console, AWS CLI, or an AWS CloudFormation template file to add databases and tables to the Data Catalog\. For more information about populating the Data Catalog, see [Data Catalog](https://docs.aws.amazon.com/glue/latest/dg/components-overview.html#data-catalog-intro) in the *AWS Glue Developer Guide*\.
 
-When using connectors, you can use the schema builder to enter the schema information when configuring the data source node of your ETL job in AWS Glue Studio\. See [Authoring jobs with custom connectors](connectors-chapter.md#job-authoring-custom-connectors) for more information\.
+When using connectors, you can use the schema builder to enter the schema information when you configure the data source node of your ETL job in AWS Glue Studio\. For more information, see [Authoring jobs with custom connectors](connectors-chapter.md#job-authoring-custom-connectors)\.
+
+If you choose an Amazon S3 location as your data source, AWS Glue Studio can automatically infer the schema of the data it reads from the files at the specified location\. For more information, see [Using files in Amazon S3 for the data source](edit-jobs-source-s3-files.md)\.
+
+If you choose a streaming data source, AWS Glue Studio can automatically infer the schema of the data it reads from the data stream\. For more information, see [Using a streaming data source](edit-jobs-source-streaming.md)\.

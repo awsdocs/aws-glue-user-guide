@@ -18,6 +18,8 @@ This tutorial assumes that you have an AWS account and access to AWS Glue\.
 
 Use these steps to configure and run a crawler that extracts the metadata from a CSV file stored in Amazon S3\.
 
+**To create a crawler that reads files stored on Amazon S3**
+
 1. On the AWS Glue service console, on the left\-side menu, choose **Crawlers**\.
 
 1. On the Crawlers page, choose **Add crawler**\. This starts a series of pages that prompt you for the crawler details\.
@@ -28,9 +30,9 @@ Use these steps to configure and run a crawler that extracts the metadata from a
 
 1. For the crawler source type, choose **Data stores** and choose **Next**\.
 
-1. Now let's point the crawler to your data\. On the **Add a data store** page, choose the Amazon S3 data store\. This tutorial doesn't use a connection, so leave the Connection field blank if it's visible\. 
+1. Now let's point the crawler to your data\. On the **Add a data store** page, choose the Amazon S3 data store\. This tutorial doesn't use a connection, so leave the **Connection** field blank if it's visible\. 
 
-   For the option **Crawl data in**, choose **Specified path in another account**\. Then, for the Include path, enter the path where the crawler can find the flights data, which is **s3://crawler\-public\-us\-east\-1/flight/2016/csv**\. After you enter the path, the title of this field changes to **Include path\.** Choose **Next**\.
+   For the option **Crawl data in**, choose **Specified path in another account**\. Then, for the **Include path**, enter the path where the crawler can find the flights data, which is **s3://crawler\-public\-us\-east\-1/flight/2016/csv**\. After you enter the path, the title of this field changes to **Include path\.** Choose **Next**\.
 
 1. You can crawl multiple data stores with a single crawler\. However, in this tutorial, we're using only a single data store, so choose **No**, and then choose **Next**\.
 
@@ -54,6 +56,8 @@ To create an IAM role, your AWS user must have `CreateRole`, `CreatePolicy`, and
 
 After creating a crawler, the wizard sends you to the Crawlers view page\. Because you create the crawler with an on\-demand schedule, you're given the option to run the crawler\.
 
+**To run the crawler**
+
 1. The banner near the top of this page lets you know that the crawler was created, and asks if you want to run it now\. Choose **Run it now?** to run the crawler\.
 
    The banner changes to show "Attempting to run" and Running" messages for your crawler\. After the crawler starts running, the banner disappears, and the crawler display is updated to show a status of Starting for your crawler\. After a minute, you can click the Refresh icon to update the status of the crawler that is displayed in the table\.
@@ -63,6 +67,8 @@ After creating a crawler, the wizard sends you to the Crawlers view page\. Becau
 ## Step 3: View AWS Glue Data Catalog objects<a name="tutorial-add-crawler-step3"></a>
 
 The crawler reads data at the source location and creates tables in the Data Catalog\. A table is the metadata definition that represents your data, including its schema\. The tables in the Data Catalog do not contain data\. Instead, you use these tables as a source or target in a job definition\.
+
+**To view the Data Catalog objects created by the crawler**
 
 1. In the left\-side navigation, under **Data catalog**, choose **Databases**\. Here you can view the `flights-db` database that is created by the crawler\.
 

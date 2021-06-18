@@ -2,7 +2,9 @@
 
 After you choose **Continue to Launch**, you see the **Launch this software** page in AWS Marketplace\. After you use the link to activate the connector in AWS Glue Studio, you create a connection\. 
 
-1. On the **Launch this software** page in the AWS Marketplace console, choose **Usage Instructions**, and then choose the link that appears in the window that appears\.
+**To deploy the connector and create a connection in AWS Glue Studio**
+
+1. On the **Launch this software** page in the AWS Marketplace console, choose **Usage Instructions**, and then choose the link in the window that appears\.
 
    Your browser is redirected to the AWS Glue Studio console **Create marketplace connection** page\.
 
@@ -12,7 +14,7 @@ After you choose **Continue to Launch**, you see the **Launch this software** pa
 
 1. For the **AWS secret**, enter the name of your secret\. For example: **my\-es\-secret**\.
 
-1. In the **Network options** section, enter the VPC information, if necessary\. 
+1. In the **Network options** section, enter the VPC information to connect to Elastic Search cluster\. 
 
 1. Choose **Create connection and activate connector**\.
 
