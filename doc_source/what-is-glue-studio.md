@@ -65,7 +65,7 @@ AWS Glue Studio provides multiple ways to customize your ETL scripts,including a
 
 ## Accessing AWS Glue Studio<a name="acessing-glue-studio"></a>
 
-To access AWS Glue Studio, sign in to AWS as a user that has the required permissions, as described in [Set up IAM permissions for AWS Glue Studio](setting-up.md#getting-started-iam-permissions)\. Then you can sign in to the AWS Management Console and open the AWS Glue console at [https://console\.aws\.amazon\.com/glue/](https://console.aws.amazon.com/glue/)\. Click the **AWS Glue Studio** link in the navigation pane\.
+To access AWS Glue Studio, sign in to AWS as a user that has the required permissions, as described in [Set up IAM permissions for AWS Glue Studio](setting-up.md#getting-started-iam-permissions)\. Then you can sign in to the AWS Management Console and open the AWS Glue console at [https://console\.aws\.amazon\.com/glue/](https://console.aws.amazon.com/glue/)\. Click the **AWS Glue Studio** link in the navigation panel\.
 
 ## Pricing for AWS Glue Studio<a name="pricing-for-glue-studio"></a>
 
